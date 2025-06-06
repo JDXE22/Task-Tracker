@@ -1,6 +1,5 @@
 import express from "express";
 import dotenv from "dotenv/config";
-import tasks from "./tasks.json" assert { type: "json" };
 
 const PORT = process.env.PORT || 3000;
 
