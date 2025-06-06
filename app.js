@@ -1,24 +1,15 @@
 import express from "express";
 import dotenv from "dotenv/config";
+import { unknown } from "./utils/middlewares/unknownCommand/unknown.js";
+import { commands } from "./utils/commands/index.js";
 
 const PORT = process.env.PORT || 3000;
 
 const app = express();
 app.use(express.json());
 
-const command = process.argv[2];
-if (command === "start") {
-  console.log("Starting the application...");
-} 
+const [, , cmdName, ...args] = process.argv;
 
-app.get("/tasks", (req, res, next) => {
-  try {
-    res.status(200).json(tasks);
-  } catch (error) {
-    next(error);
-  }
-});
+const displayCommand = commands[cmdName] ?? (() => unknown({ name: cmdName }));
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+displayCommand(...args);
