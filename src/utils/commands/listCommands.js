@@ -1,9 +1,5 @@
-import tasks from "../../../tasks.json" with { type: "json" };
+import { getTasks } from "../services/tasksServices.js";
 
-export const listCommands = () => {
-  
-  tasks.forEach((task) => {
-    console.log(`- ${task.name}: ${task.description}`);
-  });
-  
+export const listCommands = ({ tasks }) => {
+  return getTasks({ tasks: tasks });
 };
