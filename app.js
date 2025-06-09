@@ -1,15 +1,11 @@
 import express from "express";
 import dotenv from "dotenv/config";
-import { unknown } from "./src/utils/middlewares/unknownCommand/unknown.js";
-import { commands } from "./src/utils/commands/index.js";
 
-// const PORT = process.env.PORT || 3000;
+import { dispatch } from "./src/dispatch.js";
 
-const app = express();
-app.use(express.json());
+if (process.argv.length === 0) {
+  console.error("No command provided. Please provide a command to execute.");
+  process.exit(1);
+}
 
-const [, , cmdName, ...args] = process.argv;
-
-const displayCommand = commands[cmdName] ?? (() => unknown({ name: cmdName }));
-
-displayCommand(...args);
+dispatch(process.argv.slice(2));

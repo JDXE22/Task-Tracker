@@ -1,5 +1,10 @@
+import { errorMiddleware } from "../middlewares/error/errors.js";
 import { getTasks } from "../services/tasksServices.js";
 
-export const listCommands = ({ tasks }) => {
-  return getTasks({ tasks: tasks });
+export const listCommands = () => {
+  try {
+    getTasks();
+  } catch (error) {
+    errorMiddleware(error);
+  }
 };
