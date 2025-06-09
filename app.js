@@ -1,7 +1,7 @@
 import express from "express";
 import dotenv from "dotenv/config";
-import { unknown } from "./utils/middlewares/unknownCommand/unknown.js";
-import { commands } from "./utils/commands/index.js";
+import { unknown } from "./src/utils/middlewares/unknownCommand/unknown.js";
+import { commands } from "./src/utils/commands/index.js";
 
 // const PORT = process.env.PORT || 3000;
 

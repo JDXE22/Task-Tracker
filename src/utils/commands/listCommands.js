@@ -1,4 +1,4 @@
-import tasks from "../../tasks.json" with { type: "json" };
+import tasks from "../../../tasks.json" with { type: "json" };
 
 export const listCommands = () => {
   
