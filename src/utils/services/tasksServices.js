@@ -19,8 +19,11 @@ export const saveTasks = (task) => {
 
 export const addTaskService = (task) => {
   const newTask = {
-    task: task,
     id: tasks.length + 1,
+    description: task,
+    status: task.status,
+    createdAt: new Date().toISOString(),
+    updatedAt: null,
   };
   tasks.push(newTask);
   saveTasks(tasks);
