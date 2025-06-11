@@ -21,12 +21,6 @@ export const saveTasks = (task) => {
 export const addTaskService = (task) => {
   tasks.push(task);
   saveTasks(tasks);
-
   return task;
 };
 
-export const addTask = (task) => {
-
-  tasks.push(task)
-  return {message: "Task added successfully", ID: task.id};
-}
