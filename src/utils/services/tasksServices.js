@@ -5,12 +5,9 @@ const filePath = resolve(process.cwd(), "tasks.json");
 const tasks = JSON.parse(readFileSync(filePath, "utf-8"));
 
 export const getTasks = () => {
-  tasks.forEach((task) => {
-    console.log(`- ${task}`);
-  });
-
-  // for (const task of tasks) {
-  // console.log(`- ${task.name}: ${task.description}`);}
+  for (const task of tasks) {
+    console.log(` ${task.description}`);
+  }
 };
 
 export const saveTasks = (task) => {
