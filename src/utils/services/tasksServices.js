@@ -15,12 +15,14 @@ export const getTasks = () => {
 
 export const saveTasks = (task) => {
   writeFileSync(filePath, JSON.stringify(task, null, 2), "utf-8");
-  console.log("Tasks saved successfully.");
 };
 
 export const addTaskService = (task) => {
-  tasks.push(task);
+  const newTask = {
+    task: task,
+    id: tasks.length + 1,
+  };
+  tasks.push(newTask);
   saveTasks(tasks);
-  return task;
+  console.log(`Task added successfully. (ID: ${newTask.id})`);
 };
-
