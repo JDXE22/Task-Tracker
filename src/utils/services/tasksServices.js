@@ -24,3 +24,9 @@ export const addTaskService = (task) => {
 
   return task;
 };
+
+export const addTask = (task) => {
+
+  tasks.push(task)
+  return {message: "Task added successfully", ID: task.id};
+}
