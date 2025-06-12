@@ -4,5 +4,12 @@
     "description": "Buy groceries",
     "createdAt": "2025-06-11T02:17:27.897Z",
     "updatedAt": null
+  },
+  {
+    "id": 2,
+    "description": "Buy electronic charger",
+    "status": null,
+    "createdAt": "2025-06-12T19:17:58.034Z",
+    "updatedAt": null
   }
 ]

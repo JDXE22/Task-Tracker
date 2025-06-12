@@ -3,10 +3,17 @@ import { resolve } from "path";
 
 const filePath = resolve(process.cwd(), "tasks.json");
 const tasks = JSON.parse(readFileSync(filePath, "utf-8"));
+const tasktStatus = ["todo", "in-progress", "done"];
 
 export const getTasks = () => {
   for (const task of tasks) {
-    console.log(` ${task.description}`);
+    console.log(
+      ` ${task.description} (ID: ${task.id}) - Status: ${
+        task.status
+      } - Created At: ${task.createdAt} - Updated At: ${
+        task.updatedAt || "Not updated yet"
+      }`
+    );
   }
 };
 
@@ -18,7 +25,7 @@ export const addTaskService = (task) => {
   const newTask = {
     id: tasks.length + 1,
     description: task,
-    status: task.status,
+    status: null,
     createdAt: new Date().toISOString(),
     updatedAt: null,
   };
@@ -51,4 +58,16 @@ export const updateTaskService = (id, updatedTask) => {
 
   saveTasks(tasks);
   console.log(`✔ Task has been updated successfully`);
+};
+
+export const markTaskAsService = (id, status) => {
+  const idNumber = Number(id);
+  const taskIndex = tasks.findIndex((task) => task.id === idNumber);
+
+  tasks[taskIndex] = {
+    ...tasks[taskIndex],
+    status: tasktStatus.includes(status) ? status : "todo",
+  };
+  saveTasks(tasks);
+  console.log(`✔ Task id=${idNumber} marked as ${status}`);
 };
