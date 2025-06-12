@@ -5,7 +5,13 @@ import { statuses } from "../commands/index.js";
 const filePath = resolve(process.cwd(), "tasks.json");
 const tasks = JSON.parse(readFileSync(filePath, "utf-8"));
 
-export const getTasks = () => {
+export const getTasks = (status) => {
+  if (status) {
+    listTaskByStatus(status)
+    console.log(`Tasks with status "${status}":`);
+    
+  }
+  
   for (const task of tasks) {
     console.log(
       ` ${task.description} (ID: ${task.id}) - Status: ${
@@ -71,3 +77,17 @@ export const markTaskAsService = (id, status) => {
   saveTasks(tasks);
   console.log(`✔ Task id=${idNumber} marked as ${status}`);
 };
+
+const listTaskByStatus = (status) => {
+  const filteredTasks = tasks.filter((task) => task.status === status);
+
+  return filteredTasks.map((task) => ({
+    id: task.id,
+    description: task.description,
+    status: task.status,
+    createdAt: task.createdAt,
+    updatedAt: task.updatedAt || "Not updated yet",
+  }));
+
+
+}
