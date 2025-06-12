@@ -1,9 +1,7 @@
-import { addTaskService } from "../services/tasksServices.js";
-import { removeTask } from "./deleteTask.js";
-import { listCommands } from "./listCommands.js";
+import { addTask, listCommands, removeTask } from "./commandsControllers.js";
 
 export const commands = {
-    list: listCommands,
-    add: addTaskService,
-    delete: removeTask
-}
+  list: listCommands,
+  add: addTask,
+  delete: removeTask,
+};

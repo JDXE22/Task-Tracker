@@ -4,7 +4,7 @@ import {
   updateTaskService,
 } from "../services/tasksServices.js";
 import { getTasks } from "../services/tasksServices.js";
-import { addTaskService } from "../services/tasksServices";
+import { addTaskService } from "../services/tasksServices.js";
 
 export const listCommands = () => {
   try {
