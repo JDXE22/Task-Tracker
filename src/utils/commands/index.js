@@ -1,6 +1,6 @@
 import { addTask, listCommands, markTaskAs, removeTask, updateTask } from "./commandsControllers.js";
 
-const statuses = [ "todo", "in-progress", "done" ];
+export const statuses = [ "todo", "in-progress", "done" ];
 
 
 const markCommands = Object.fromEntries(
