@@ -1,8 +1,9 @@
-import { addTask, listCommands, removeTask, updateTask } from "./commandsControllers.js";
+import { addTask, listCommands, markTaskAs, removeTask, updateTask } from "./commandsControllers.js";
 
 export const commands = {
   list: listCommands,
   add: addTask,
   delete: removeTask,
-  update: updateTask
+  update: updateTask,
+  mark: markTaskAs,
 };
