@@ -1,18 +1,23 @@
 import { readFileSync, writeFileSync } from "fs";
 import { resolve } from "path";
+import { statuses } from "../commands/index.js";
 
 const filePath = resolve(process.cwd(), "tasks.json");
 const tasks = JSON.parse(readFileSync(filePath, "utf-8"));
-const tasktStatus = ["todo", "in-progress", "done"];
 
-export const getTasks = () => {
-  for (const task of tasks) {
+export const getTasks = (status) => {
+  const toShowTasks = listTaskByStatus(status);
+
+  console.log(`Tasks ${status ? `with status "${status}"` : ""}:`);
+
+  for (const task of toShowTasks) {
     console.log(
-      ` ${task.description} (ID: ${task.id}) - Status: ${
-        task.status
-      } - Created At: ${task.createdAt} - Updated At: ${
-        task.updatedAt || "Not updated yet"
-      }`
+      ` 
+      ID: ${task.id}
+      Description: ${task.description} 
+      Status: ${task.status || "todo"}
+      Created At: ${task.createdAt} 
+      Updated At: ${task.updatedAt || "N/A"}`
     );
   }
 };
@@ -66,8 +71,12 @@ export const markTaskAsService = (id, status) => {
 
   tasks[taskIndex] = {
     ...tasks[taskIndex],
-    status: tasktStatus.includes(status) ? status : "todo",
+    status: statuses.includes(status) ? status : "todo",
   };
   saveTasks(tasks);
   console.log(`✔ Task id=${idNumber} marked as ${status}`);
+};
+
+const listTaskByStatus = (status) => {
+  return tasks.filter((task) => !status || task.status === status);
 };
