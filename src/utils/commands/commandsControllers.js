@@ -1,6 +1,7 @@
 import { errorMiddleware } from "../middlewares/error/errors.js";
 import {
   deleteTaskService,
+  markTaskAsService,
   updateTaskService,
 } from "../services/tasksServices.js";
 import { getTasks } from "../services/tasksServices.js";
@@ -35,6 +36,15 @@ export const updateTask = (id, task) => {
   try {
     const updatedTask = updateTaskService(id, task);
     return updatedTask;
+  } catch (error) {
+    errorMiddleware(error);
+  }
+};
+
+export const markTaskAs = (id, status) => {
+  try {
+    const markedTask = markTaskAsService(id, status);
+    return markedTask;
   } catch (error) {
     errorMiddleware(error);
   }

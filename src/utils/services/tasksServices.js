@@ -60,7 +60,7 @@ export const updateTaskService = (id, updatedTask) => {
   console.log(`✔ Task has been updated successfully`);
 };
 
-export const markTaskAs = (id, status) => {
+export const markTaskAsService = (id, status) => {
   const idNumber = Number(id);
   const taskIndex = tasks.findIndex((task) => task.id === idNumber);
 
