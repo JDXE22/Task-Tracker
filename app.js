@@ -9,3 +9,4 @@ if (process.argv.length === 0) {
 }
 
 dispatch(process.argv.slice(2));
+

@@ -28,12 +28,13 @@ export const addTaskService = (task) => {
 };
 
 export const deleteTaskService = (id) => {
-  const taskIndex = tasks.findIndex((task) => task.id === id);
-   taskIndex !== -1
-    ? tasks.splice(taskIndex, 1)
-    : console.log("Task not found.");
-  
-  console.log(`The task with the id: ${id} has been deleted`);
-  
-};
+  const idNumber = Number(id);
 
+  const taskIndex = tasks.findIndex((task) => task.id === idNumber);
+
+  const [removedTask] = tasks.splice(taskIndex, 1);
+
+  saveTasks(tasks);
+
+  console.log(`✔ Removed task id=${idNumber}`);
+};

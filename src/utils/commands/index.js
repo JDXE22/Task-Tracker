@@ -5,5 +5,5 @@ import { listCommands } from "./listCommands.js";
 export const commands = {
     list: listCommands,
     add: addTaskService,
-    remove: removeTask
+    delete: removeTask
 }

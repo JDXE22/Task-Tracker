@@ -1,5 +1,5 @@
-import { errorMiddleware } from "../middlewares/error/errors";
-import { deleteTaskService } from "../services/tasksServices";
+import { errorMiddleware } from "../middlewares/error/errors.js";
+import { deleteTaskService } from "../services/tasksServices.js";
 
 export const removeTask = (id) => {
   try {
