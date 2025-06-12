@@ -42,11 +42,10 @@ export const deleteTaskService = (id) => {
 export const updateTaskService = (id, updatedTask) => {
   const idNumber = Number(id);
   const taskIndex = tasks.findIndex((task) => task.id === idNumber);
-  const task = tasks[taskIndex];
 
   tasks[taskIndex] = {
-    ...task,
-    ...updatedTask,
+    ...tasks[taskIndex],
+    description: updatedTask,
     updatedAt: new Date().toISOString(),
   };
 
