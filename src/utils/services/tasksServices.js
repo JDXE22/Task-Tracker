@@ -3,6 +3,7 @@ import { resolve } from "path";
 
 const filePath = resolve(process.cwd(), "tasks.json");
 const tasks = JSON.parse(readFileSync(filePath, "utf-8"));
+const tasktStatus = ["todo", "in-progress", "done"];
 
 export const getTasks = () => {
   for (const task of tasks) {
@@ -57,4 +58,16 @@ export const updateTaskService = (id, updatedTask) => {
 
   saveTasks(tasks);
   console.log(`✔ Task has been updated successfully`);
+};
+
+export const markTaskAs = (id, status) => {
+  const idNumber = Number(id);
+  const taskIndex = tasks.findIndex((task) => task.id === idNumber);
+
+  tasks[taskIndex] = {
+    ...tasks[taskIndex],
+    status: tasktStatus.includes(status) ? status : "todo",
+  };
+  saveTasks(tasks);
+  console.log(`✔ Task id=${idNumber} marked as ${status}`);
 };
