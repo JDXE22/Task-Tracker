@@ -6,7 +6,13 @@ const tasks = JSON.parse(readFileSync(filePath, "utf-8"));
 
 export const getTasks = () => {
   for (const task of tasks) {
-    console.log(` ${task.description}`);
+    console.log(
+      ` ${task.description} (ID: ${task.id}) - Status: ${
+        task.status
+      } - Created At: ${task.createdAt} - Updated At: ${
+        task.updatedAt || "Not updated yet"
+      }`
+    );
   }
 };
 
@@ -18,7 +24,7 @@ export const addTaskService = (task) => {
   const newTask = {
     id: tasks.length + 1,
     description: task,
-    status: task.status,
+    status: null,
     createdAt: new Date().toISOString(),
     updatedAt: null,
   };
