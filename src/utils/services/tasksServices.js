@@ -6,19 +6,18 @@ const filePath = resolve(process.cwd(), "tasks.json");
 const tasks = JSON.parse(readFileSync(filePath, "utf-8"));
 
 export const getTasks = (status) => {
-  if (status) {
-    listTaskByStatus(status)
-    console.log(`Tasks with status "${status}":`);
-    
-  }
-  
-  for (const task of tasks) {
+  const toShowTasks = listTaskByStatus(status);
+
+  console.log(`Tasks ${status ? `with status "${status}"` : ""}:`);
+
+  for (const task of toShowTasks) {
     console.log(
-      ` ${task.description} (ID: ${task.id}) - Status: ${
-        task.status
-      } - Created At: ${task.createdAt} - Updated At: ${
-        task.updatedAt || "Not updated yet"
-      }`
+      ` 
+      ID: ${task.id}
+      Description: ${task.description} 
+      Status: ${task.status || "todo"}
+      Created At: ${task.createdAt} 
+      Updated At: ${task.updatedAt || "N/A"}`
     );
   }
 };
@@ -79,15 +78,5 @@ export const markTaskAsService = (id, status) => {
 };
 
 const listTaskByStatus = (status) => {
-  const filteredTasks = tasks.filter((task) => task.status === status);
-
-  return filteredTasks.map((task) => ({
-    id: task.id,
-    description: task.description,
-    status: task.status,
-    createdAt: task.createdAt,
-    updatedAt: task.updatedAt || "Not updated yet",
-  }));
-
-
-}
+  return tasks.filter((task) => !status || task.status === status);
+};

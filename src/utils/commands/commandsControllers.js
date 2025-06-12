@@ -7,9 +7,9 @@ import {
 import { getTasks } from "../services/tasksServices.js";
 import { addTaskService } from "../services/tasksServices.js";
 
-export const listCommands = () => {
+export const listCommands = (status) => {
   try {
-    getTasks();
+    getTasks(status);
   } catch (error) {
     errorMiddleware(error);
   }
