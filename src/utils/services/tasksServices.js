@@ -38,3 +38,17 @@ export const deleteTaskService = (id) => {
 
   console.log(`✔ Removed task id=${idNumber}`);
 };
+
+export const updateTaskService = (id, updatedTask) => {
+  const idNumber = Number(id);
+  const taskIndex = tasks.findIndex((task) => task.id === idNumber);
+
+  tasks[taskIndex] = {
+    ...tasks[taskIndex],
+    description: updatedTask,
+    updatedAt: new Date().toISOString(),
+  };
+
+  saveTasks(tasks);
+  console.log(`✔ Task has been updated successfully`);
+};
