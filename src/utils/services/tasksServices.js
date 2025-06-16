@@ -37,6 +37,7 @@ export const addTaskService = (task) => {
   tasks.push(newTask);
   saveTasks(tasks);
   console.log(`Task added successfully. (ID: ${newTask.id})`);
+  return newTask
 };
 
 export const deleteTaskService = (id) => {
