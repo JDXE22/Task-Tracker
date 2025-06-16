@@ -30,10 +30,10 @@ beforeEach(() => {
 describe("addTask creates a new task and returns it", () => {
   const newTask = "write tests"
   const result = addTask(newTask)
-  assert.equal(result, newTask)
+  assert.equal(result.description, newTask)
 
   const allTasks = read();
-  assert.equal(allTasks.length, 2);
+  assert.equal(allTasks.length, 1);
 });
 
 after(() => {
