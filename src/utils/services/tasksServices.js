@@ -1,7 +1,7 @@
 import { readFileSync, writeFileSync } from "fs";
 import { resolve } from "path";
-import { statuses } from "../commands/index.js";
-
+import { statuses } from "../commands/constants/status.js";
+ 
 const filePath = resolve(process.cwd(), "tasks.json");
 const tasks = JSON.parse(readFileSync(filePath, "utf-8"));
 
