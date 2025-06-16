@@ -2,6 +2,7 @@ import test, { beforeEach, after, describe } from "node:test";
 import assert from "node:assert/strict";
 import { resolve } from "path";
 import { writeFileSync, readFileSync } from "fs";
+import { addTask } from "../utils/commands/commandsControllers";
 
 const TASK_FILE = resolve(process.cwd(), "tasks.json");
 
@@ -26,7 +27,11 @@ beforeEach(() => {
   );
 });
 
-describe("addTask creates a new task and returns it", () => {});
+describe("addTask creates a new task and returns it", () => {
+  const newTask = "write tests"
+  const result = addTask(newTask)
+  assert.equal(result.description, newTask)
+});
 
 after(() => {
   writeFileSync(TASK_FILE, JSON.stringify([], null, 2));
