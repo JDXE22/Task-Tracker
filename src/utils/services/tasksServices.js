@@ -1,7 +1,7 @@
 import { readFileSync, writeFileSync } from "fs";
 import { resolve } from "path";
 import { statuses } from "../commands/constants/status.js";
- 
+
 const filePath = resolve(process.cwd(), "tasks.json");
 const tasks = JSON.parse(readFileSync(filePath, "utf-8"));
 
@@ -38,7 +38,7 @@ export const addTaskService = (task) => {
   tasks.push(newTask);
   saveTasks(tasks);
   console.log(`Task added successfully. (ID: ${newTask.id})`);
-  return newTask
+  return newTask;
 };
 
 export const deleteTaskService = (id) => {
@@ -65,6 +65,7 @@ export const updateTaskService = (id, updatedTask) => {
 
   saveTasks(tasks);
   console.log(`✔ Task has been updated successfully`);
+  return tasks[taskIndex];
 };
 
 export const markTaskAsService = (id, status) => {
