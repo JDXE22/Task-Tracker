@@ -4,6 +4,7 @@ import { writeFileSync } from "fs";
 import {
   addTask,
   listCommands,
+  updateTask,
 } from "../utils/commands/commandsControllers.js";
 import { initialTasks, read, TASK_FILE } from "./helper/taskHelper.js";
 
@@ -27,7 +28,23 @@ describe("get all the task", () => {
     const allTasks = read();
     assert.strictEqual(result.length, allTasks.length);
   });
+
 });
+
+describe("A task is updated and returned" , () => {
+  test("updateTask updates a task and returns it", ()=> {
+
+    const updatedTask = {
+      id: 1,
+      description: "buy some milk"
+    }
+
+    const result = updateTask(updatedTask.id, updatedTask.description)
+    assert.equal(result.description, updatedTask.description);
+  })
+})
+
+
 
 after(() => {
   writeFileSync(TASK_FILE, JSON.stringify([], null, 2));
