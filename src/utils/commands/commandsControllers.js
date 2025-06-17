@@ -18,7 +18,8 @@ export const listCommands = (status) => {
 
 export const removeTask = (id) => {
   try {
-    deleteTaskService(id);
+    const taskDeleted = deleteTaskService(id);
+    return taskDeleted;
   } catch (error) {
     errorMiddleware(error);
   }
