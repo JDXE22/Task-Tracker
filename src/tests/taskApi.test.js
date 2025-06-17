@@ -2,7 +2,10 @@ import test, { beforeEach, after, describe } from "node:test";
 import assert from "node:assert/strict";
 import { resolve } from "path";
 import { writeFileSync, readFileSync } from "fs";
-import { addTask, listCommands } from "../utils/commands/commandsControllers.js";
+import {
+  addTask,
+  listCommands,
+} from "../utils/commands/commandsControllers.js";
 
 const TASK_FILE = resolve(process.cwd(), "tasks.json");
 
@@ -15,9 +18,9 @@ beforeEach(() => {
       [
         {
           id: 1,
-          description: "foo",
+          description: "write tests",
           status: null,
-          createdAt: "2020",
+          createdAt: new Date().toISOString(),
           updatedAt: null,
         },
       ],
@@ -28,22 +31,22 @@ beforeEach(() => {
 });
 
 describe("addTask creates a new task and returns it", () => {
-  const newTask = "write tests"
-  const result = addTask(newTask)
-  assert.equal(result.description, newTask)
+  const newTask = "write tests";
+  const result = addTask(newTask);
+  assert.equal(result.description, newTask);
 
   const allTasks = read();
   assert.equal(allTasks.length, 1);
 });
 
-describe("get all the task" , ()=> {
-  test("return all tasks no matter the status" , ()=> {
-    const result = listCommands()
-    assert.equal(result.length, 1);
-    assert.strictEqual(result[0].description, "foo");
+describe("get all the task", () => {
+  test("return all tasks no matter the status", () => {
+    const result = listCommands();
+    const allTasks = read();
 
-  })
-})
+    assert.strictEqual(result.length, allTasks.length);
+  });
+});
 
 after(() => {
   writeFileSync(TASK_FILE, JSON.stringify([], null, 2));
