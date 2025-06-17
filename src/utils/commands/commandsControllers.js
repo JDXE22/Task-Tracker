@@ -9,7 +9,8 @@ import { addTaskService } from "../services/tasksServices.js";
 
 export const listCommands = (status) => {
   try {
-    getTasks(status);
+   const all = getTasks(status);
+    return all;
   } catch (error) {
     errorMiddleware(error);
   }
