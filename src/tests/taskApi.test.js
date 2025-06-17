@@ -2,7 +2,7 @@ import test, { beforeEach, after, describe } from "node:test";
 import assert from "node:assert/strict";
 import { resolve } from "path";
 import { writeFileSync, readFileSync } from "fs";
-import { addTask } from "../utils/commands/commandsControllers.js";
+import { addTask, listCommands } from "../utils/commands/commandsControllers.js";
 
 const TASK_FILE = resolve(process.cwd(), "tasks.json");
 
@@ -35,6 +35,15 @@ describe("addTask creates a new task and returns it", () => {
   const allTasks = read();
   assert.equal(allTasks.length, 1);
 });
+
+describe("get all the task" , ()=> {
+  test("return all tasks no matter the status" , ()=> {
+    const result = listCommands()
+    assert.equal(result.length, 1);
+    assert.strictEqual(result[0].description, "foo");
+
+  })
+})
 
 after(() => {
   writeFileSync(TASK_FILE, JSON.stringify([], null, 2));
