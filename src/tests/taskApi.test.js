@@ -36,11 +36,14 @@ describe("A task is updated and returned" , () => {
 
     const updatedTask = {
       id: 1,
-      description: "buy some milk"
+      description: "buy some milk",
+      updatedAt: new Date().toISOString()
     }
 
-    const result = updateTask(updatedTask.id, updatedTask.description)
+    const result = updateTask(updatedTask.id, updatedTask.description);
     assert.equal(result.description, updatedTask.description);
+    assert.equal(result.updatedAt, updatedTask.updatedAt);
+
   })
 })
 
