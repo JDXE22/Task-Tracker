@@ -19,6 +19,7 @@ export const getTasks = (status) => {
       Created At: ${task.createdAt} 
       Updated At: ${task.updatedAt || "N/A"}`
     );
+    return [task];
   }
 };
 
