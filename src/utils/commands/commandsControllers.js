@@ -51,3 +51,12 @@ export const markTaskAs = (id, status) => {
     errorMiddleware(error);
   }
 };
+
+export const deleteTask = (id) => {
+  try {
+    const taskDeleted = deleteTaskService(id);
+    return taskDeleted;
+  } catch (error) {
+    errorMiddleware(error);
+  }
+}
