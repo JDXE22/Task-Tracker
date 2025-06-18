@@ -9,7 +9,8 @@ import { addTaskService } from "../services/tasksServices.js";
 
 export const listCommands = (status) => {
   try {
-    getTasks(status);
+   const all = getTasks(status);
+    return all;
   } catch (error) {
     errorMiddleware(error);
   }
@@ -17,7 +18,8 @@ export const listCommands = (status) => {
 
 export const removeTask = (id) => {
   try {
-    deleteTaskService(id);
+    const taskDeleted = deleteTaskService(id);
+    return taskDeleted;
   } catch (error) {
     errorMiddleware(error);
   }
@@ -49,3 +51,12 @@ export const markTaskAs = (id, status) => {
     errorMiddleware(error);
   }
 };
+
+export const deleteTask = (id) => {
+  try {
+    const taskDeleted = deleteTaskService(id);
+    return taskDeleted;
+  } catch (error) {
+    errorMiddleware(error);
+  }
+}
