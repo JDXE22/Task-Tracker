@@ -51,6 +51,8 @@ export const deleteTaskService = (id) => {
   saveTasks(tasks);
 
   console.log(`✔ Removed task id=${idNumber}`);
+
+  return `Task with ID ${idNumber} has been removed successfully.`;
 };
 
 export const updateTaskService = (id, updatedTask) => {
